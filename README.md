@@ -9,3 +9,6 @@ It was intended as a remote keyboard via a socket on a local network.
 <br><br>
 ![Screenshot](https://github.com/tnsr1/neon_keyboard/blob/main/Screenshot%202025-11-30%20190944.png)
 <br><br>
+
+WBR, alex;
+;o)
