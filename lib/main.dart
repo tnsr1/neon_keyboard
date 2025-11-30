@@ -88,7 +88,9 @@ class _NeonKeyboardState extends State<NeonKeyboard> {
   void sendKeyToHarbour(int keyCode, {bool isModifier = false}) {
     setState(() {
       lastKeyCode = 'KeyCode: $keyCode';
+
       if (isModifier) {
+        // Обработка переключения модификаторов
         switch (keyCode) {
           case KeyCodes.shift:
             isShiftPressed = !isShiftPressed;
@@ -103,9 +105,15 @@ class _NeonKeyboardState extends State<NeonKeyboard> {
             isWinPressed = !isWinPressed;
             break;
           case KeyCodes.capsLock:
-            isCapsPressed = !isCapsPressed; // ← ДОБАВЛЕНО
+            isCapsPressed = !isCapsPressed;
             break;
         }
+      } else {
+        // Сброс модификаторов (кроме CapsLock) при нажатии обычной клавиши
+        isShiftPressed = false;
+        isCtrlPressed = false;
+        isAltPressed = false;
+        isWinPressed = false;
       }
     });
 
@@ -121,7 +129,6 @@ class _NeonKeyboardState extends State<NeonKeyboard> {
     // );
 
     print('Нажата клавиша с кодом: $keyCode');
-    print('Раскладка: $currentLayout');
     print('Модификаторы — Shift: $isShiftPressed, Ctrl: $isCtrlPressed, Alt: $isAltPressed, Win: $isWinPressed, Caps: $isCapsPressed');
   }
 
@@ -321,44 +328,45 @@ class KeyboardLayout extends StatelessWidget {
       ],
       [
         KeyData(label: 'Tab', keyCode: KeyCodes.tab, borderColor: KeyboardColors.blue, flex: 2),
-        KeyData(label: 'Q', keyCode: 81, borderColor: KeyboardColors.green, shiftLabel: 'q'),
-        KeyData(label: 'W', keyCode: 87, borderColor: KeyboardColors.green, shiftLabel: 'w'),
-        KeyData(label: 'E', keyCode: 69, borderColor: KeyboardColors.green, shiftLabel: 'e'),
-        KeyData(label: 'R', keyCode: 82, borderColor: KeyboardColors.green, shiftLabel: 'r'),
-        KeyData(label: 'T', keyCode: 84, borderColor: KeyboardColors.green, shiftLabel: 't'),
-        KeyData(label: 'Y', keyCode: 89, borderColor: KeyboardColors.green, shiftLabel: 'y'),
-        KeyData(label: 'U', keyCode: 85, borderColor: KeyboardColors.green, shiftLabel: 'u'),
-        KeyData(label: 'I', keyCode: 73, borderColor: KeyboardColors.green, shiftLabel: 'i'),
-        KeyData(label: 'O', keyCode: 79, borderColor: KeyboardColors.green, shiftLabel: 'o'),
-        KeyData(label: 'P', keyCode: 80, borderColor: KeyboardColors.green, shiftLabel: 'p'),
+        KeyData(label: 'q', keyCode: 81, borderColor: KeyboardColors.green, shiftLabel: 'Q'), // было 'Q', shiftLabel: 'q'
+        KeyData(label: 'w', keyCode: 87, borderColor: KeyboardColors.green, shiftLabel: 'W'), // было 'W', shiftLabel: 'w'
+        KeyData(label: 'e', keyCode: 69, borderColor: KeyboardColors.green, shiftLabel: 'E'), // было 'E', shiftLabel: 'e'
+        KeyData(label: 'r', keyCode: 82, borderColor: KeyboardColors.green, shiftLabel: 'R'), // было 'R', shiftLabel: 'r'
+        KeyData(label: 't', keyCode: 84, borderColor: KeyboardColors.green, shiftLabel: 'T'), // было 'T', shiftLabel: 't'
+        KeyData(label: 'y', keyCode: 89, borderColor: KeyboardColors.green, shiftLabel: 'Y'), // было 'Y', shiftLabel: 'y'
+        KeyData(label: 'u', keyCode: 85, borderColor: KeyboardColors.green, shiftLabel: 'U'), // было 'U', shiftLabel: 'u'
+        KeyData(label: 'i', keyCode: 73, borderColor: KeyboardColors.green, shiftLabel: 'I'), // было 'I', shiftLabel: 'i'
+        KeyData(label: 'o', keyCode: 79, borderColor: KeyboardColors.green, shiftLabel: 'O'), // было 'O', shiftLabel: 'o'
+        KeyData(label: 'p', keyCode: 80, borderColor: KeyboardColors.green, shiftLabel: 'P'), // было 'P', shiftLabel: 'p'
         KeyData(label: '[', keyCode: 219, borderColor: KeyboardColors.green, shiftLabel: '{'),
         KeyData(label: ']', keyCode: 221, borderColor: KeyboardColors.green, shiftLabel: '}'),
         KeyData(label: '\\', keyCode: 220, borderColor: KeyboardColors.green, shiftLabel: '|'),
       ],
       [
         KeyData(label: 'Caps', keyCode: KeyCodes.capsLock, borderColor: KeyboardColors.pink, flex: 2, isModifier: true),
-        KeyData(label: 'A', keyCode: 65, borderColor: KeyboardColors.blue, shiftLabel: 'a'),
-        KeyData(label: 'S', keyCode: 83, borderColor: KeyboardColors.blue, shiftLabel: 's'),
-        KeyData(label: 'D', keyCode: 68, borderColor: KeyboardColors.blue, shiftLabel: 'd'),
-        KeyData(label: 'F', keyCode: 70, borderColor: KeyboardColors.blue, shiftLabel: 'f'),
-        KeyData(label: 'G', keyCode: 71, borderColor: KeyboardColors.blue, shiftLabel: 'g'),
-        KeyData(label: 'H', keyCode: 72, borderColor: KeyboardColors.blue, shiftLabel: 'h'),
-        KeyData(label: 'J', keyCode: 74, borderColor: KeyboardColors.blue, shiftLabel: 'j'),
-        KeyData(label: 'K', keyCode: 75, borderColor: KeyboardColors.blue, shiftLabel: 'k'),
-        KeyData(label: 'L', keyCode: 76, borderColor: KeyboardColors.blue, shiftLabel: 'l'),
+        KeyData(label: 'q', keyCode: 81, borderColor: KeyboardColors.green, shiftLabel: 'Q'), // было 'Q', shiftLabel: 'q'
+        KeyData(label: 'w', keyCode: 87, borderColor: KeyboardColors.green, shiftLabel: 'W'), // было 'W', shiftLabel: 'w'
+        KeyData(label: 'e', keyCode: 69, borderColor: KeyboardColors.green, shiftLabel: 'E'), // было 'E', shiftLabel: 'e'
+        KeyData(label: 'r', keyCode: 82, borderColor: KeyboardColors.green, shiftLabel: 'R'), // было 'R', shiftLabel: 'r'
+        KeyData(label: 't', keyCode: 84, borderColor: KeyboardColors.green, shiftLabel: 'T'), // было 'T', shiftLabel: 't'
+        KeyData(label: 'y', keyCode: 89, borderColor: KeyboardColors.green, shiftLabel: 'Y'), // было 'Y', shiftLabel: 'y'
+        KeyData(label: 'u', keyCode: 85, borderColor: KeyboardColors.green, shiftLabel: 'U'), // было 'U', shiftLabel: 'u'
+        KeyData(label: 'i', keyCode: 73, borderColor: KeyboardColors.green, shiftLabel: 'I'), // было 'I', shiftLabel: 'i'
+        KeyData(label: 'o', keyCode: 79, borderColor: KeyboardColors.green, shiftLabel: 'O'), // было 'O', shiftLabel: 'o'
+        KeyData(label: 'p', keyCode: 80, borderColor: KeyboardColors.green, shiftLabel: 'P'), // было 'P', shiftLabel: 'p'
         KeyData(label: ';', keyCode: 186, borderColor: KeyboardColors.blue, shiftLabel: ':'),
         KeyData(label: '\'', keyCode: 222, borderColor: KeyboardColors.blue, shiftLabel: '"'),
         KeyData(label: 'Enter', keyCode: KeyCodes.enter, borderColor: KeyboardColors.pink, flex: 2),
       ],
       [
         KeyData(label: 'Shift', keyCode: KeyCodes.shift, borderColor: KeyboardColors.green, flex: 2, isModifier: true),
-        KeyData(label: 'Z', keyCode: 90, borderColor: KeyboardColors.pink, shiftLabel: 'z'),
-        KeyData(label: 'X', keyCode: 88, borderColor: KeyboardColors.pink, shiftLabel: 'x'),
-        KeyData(label: 'C', keyCode: 67, borderColor: KeyboardColors.pink, shiftLabel: 'c'),
-        KeyData(label: 'V', keyCode: 86, borderColor: KeyboardColors.pink, shiftLabel: 'v'),
-        KeyData(label: 'B', keyCode: 66, borderColor: KeyboardColors.pink, shiftLabel: 'b'),
-        KeyData(label: 'N', keyCode: 78, borderColor: KeyboardColors.pink, shiftLabel: 'n'),
-        KeyData(label: 'M', keyCode: 77, borderColor: KeyboardColors.pink, shiftLabel: 'm'),
+        KeyData(label: 'z', keyCode: 90, borderColor: KeyboardColors.pink, shiftLabel: 'Z'), // было 'Z', shiftLabel: 'z'
+        KeyData(label: 'x', keyCode: 88, borderColor: KeyboardColors.pink, shiftLabel: 'X'), // было 'X', shiftLabel: 'x'
+        KeyData(label: 'c', keyCode: 67, borderColor: KeyboardColors.pink, shiftLabel: 'C'), // было 'C', shiftLabel: 'c'
+        KeyData(label: 'v', keyCode: 86, borderColor: KeyboardColors.pink, shiftLabel: 'V'), // было 'V', shiftLabel: 'v'
+        KeyData(label: 'b', keyCode: 66, borderColor: KeyboardColors.pink, shiftLabel: 'B'), // было 'B', shiftLabel: 'b'
+        KeyData(label: 'n', keyCode: 78, borderColor: KeyboardColors.pink, shiftLabel: 'N'), // было 'N', shiftLabel: 'n'
+        KeyData(label: 'm', keyCode: 77, borderColor: KeyboardColors.pink, shiftLabel: 'M'), // было 'M', shiftLabel: 'm'
         KeyData(label: ',', keyCode: 188, borderColor: KeyboardColors.pink, shiftLabel: '<'),
         KeyData(label: '.', keyCode: 190, borderColor: KeyboardColors.pink, shiftLabel: '>'),
         KeyData(label: '/', keyCode: 191, borderColor: KeyboardColors.pink, shiftLabel: '?'),
@@ -405,46 +413,46 @@ class KeyboardLayout extends StatelessWidget {
       ],
       [
         KeyData(label: 'Tab', keyCode: KeyCodes.tab, borderColor: KeyboardColors.blue, flex: 2),
-        KeyData(label: 'Й', keyCode: 81, borderColor: KeyboardColors.green, shiftLabel: 'й'),
-        KeyData(label: 'Ц', keyCode: 87, borderColor: KeyboardColors.green, shiftLabel: 'ц'),
-        KeyData(label: 'У', keyCode: 69, borderColor: KeyboardColors.green, shiftLabel: 'у'),
-        KeyData(label: 'К', keyCode: 82, borderColor: KeyboardColors.green, shiftLabel: 'к'),
-        KeyData(label: 'Е', keyCode: 84, borderColor: KeyboardColors.green, shiftLabel: 'е'),
-        KeyData(label: 'Н', keyCode: 89, borderColor: KeyboardColors.green, shiftLabel: 'н'),
-        KeyData(label: 'Г', keyCode: 85, borderColor: KeyboardColors.green, shiftLabel: 'г'),
-        KeyData(label: 'Ш', keyCode: 73, borderColor: KeyboardColors.green, shiftLabel: 'ш'),
-        KeyData(label: 'Щ', keyCode: 79, borderColor: KeyboardColors.green, shiftLabel: 'щ'),
-        KeyData(label: 'З', keyCode: 80, borderColor: KeyboardColors.green, shiftLabel: 'з'),
-        KeyData(label: 'Х', keyCode: 219, borderColor: KeyboardColors.green, shiftLabel: 'х'),
-        KeyData(label: 'Ъ', keyCode: 221, borderColor: KeyboardColors.green, shiftLabel: 'ъ'),
+        KeyData(label: 'й', keyCode: 81, borderColor: KeyboardColors.green, shiftLabel: 'Й'), // было 'Й', shiftLabel: 'й'
+        KeyData(label: 'ц', keyCode: 87, borderColor: KeyboardColors.green, shiftLabel: 'Ц'), // было 'Ц', shiftLabel: 'ц'
+        KeyData(label: 'у', keyCode: 69, borderColor: KeyboardColors.green, shiftLabel: 'У'), // было 'У', shiftLabel: 'у'
+        KeyData(label: 'к', keyCode: 82, borderColor: KeyboardColors.green, shiftLabel: 'К'), // было 'К', shiftLabel: 'к'
+        KeyData(label: 'е', keyCode: 84, borderColor: KeyboardColors.green, shiftLabel: 'Е'), // было 'Е', shiftLabel: 'е'
+        KeyData(label: 'н', keyCode: 89, borderColor: KeyboardColors.green, shiftLabel: 'Н'), // было 'Н', shiftLabel: 'н'
+        KeyData(label: 'г', keyCode: 85, borderColor: KeyboardColors.green, shiftLabel: 'Г'), // было 'Г', shiftLabel: 'г'
+        KeyData(label: 'ш', keyCode: 73, borderColor: KeyboardColors.green, shiftLabel: 'Ш'), // было 'Ш', shiftLabel: 'ш'
+        KeyData(label: 'щ', keyCode: 79, borderColor: KeyboardColors.green, shiftLabel: 'Щ'), // было 'Щ', shiftLabel: 'щ'
+        KeyData(label: 'з', keyCode: 80, borderColor: KeyboardColors.green, shiftLabel: 'З'), // было 'З', shiftLabel: 'з'
+        KeyData(label: 'х', keyCode: 219, borderColor: KeyboardColors.green, shiftLabel: 'Х'),
+        KeyData(label: 'ъ', keyCode: 221, borderColor: KeyboardColors.green, shiftLabel: 'Ъ'),
         KeyData(label: '\\', keyCode: 220, borderColor: KeyboardColors.green, shiftLabel: '/'),
       ],
       [
         KeyData(label: 'Caps', keyCode: KeyCodes.capsLock, borderColor: KeyboardColors.pink, flex: 2, isModifier: true),
-        KeyData(label: 'Ф', keyCode: 65, borderColor: KeyboardColors.blue, shiftLabel: 'ф'),
-        KeyData(label: 'Ы', keyCode: 83, borderColor: KeyboardColors.blue, shiftLabel: 'ы'),
-        KeyData(label: 'В', keyCode: 68, borderColor: KeyboardColors.blue, shiftLabel: 'в'),
-        KeyData(label: 'А', keyCode: 70, borderColor: KeyboardColors.blue, shiftLabel: 'а'),
-        KeyData(label: 'П', keyCode: 71, borderColor: KeyboardColors.blue, shiftLabel: 'п'),
-        KeyData(label: 'Р', keyCode: 72, borderColor: KeyboardColors.blue, shiftLabel: 'р'),
-        KeyData(label: 'О', keyCode: 74, borderColor: KeyboardColors.blue, shiftLabel: 'о'),
-        KeyData(label: 'Л', keyCode: 75, borderColor: KeyboardColors.blue, shiftLabel: 'л'),
-        KeyData(label: 'Д', keyCode: 76, borderColor: KeyboardColors.blue, shiftLabel: 'д'),
-        KeyData(label: 'Ж', keyCode: 186, borderColor: KeyboardColors.blue, shiftLabel: 'ж'),
-        KeyData(label: 'Э', keyCode: 222, borderColor: KeyboardColors.blue, shiftLabel: 'э'),
+        KeyData(label: 'ф', keyCode: 65, borderColor: KeyboardColors.blue, shiftLabel: 'Ф'), // было 'Ф', shiftLabel: 'ф'
+        KeyData(label: 'ы', keyCode: 83, borderColor: KeyboardColors.blue, shiftLabel: 'Ы'), // было 'Ы', shiftLabel: 'ы'
+        KeyData(label: 'в', keyCode: 68, borderColor: KeyboardColors.blue, shiftLabel: 'В'), // было 'В', shiftLabel: 'в'
+        KeyData(label: 'а', keyCode: 70, borderColor: KeyboardColors.blue, shiftLabel: 'А'), // было 'А', shiftLabel: 'а'
+        KeyData(label: 'п', keyCode: 71, borderColor: KeyboardColors.blue, shiftLabel: 'П'), // было 'П', shiftLabel: 'п'
+        KeyData(label: 'р', keyCode: 72, borderColor: KeyboardColors.blue, shiftLabel: 'Р'), // было 'Р', shiftLabel: 'р'
+        KeyData(label: 'о', keyCode: 74, borderColor: KeyboardColors.blue, shiftLabel: 'О'), // было 'О', shiftLabel: 'о'
+        KeyData(label: 'л', keyCode: 75, borderColor: KeyboardColors.blue, shiftLabel: 'Л'), // было 'Л', shiftLabel: 'л'
+        KeyData(label: 'д', keyCode: 76, borderColor: KeyboardColors.blue, shiftLabel: 'Д'), // было 'Д', shiftLabel: 'д'
+        KeyData(label: 'ж', keyCode: 186, borderColor: KeyboardColors.blue, shiftLabel: 'Ж'),
+        KeyData(label: 'э', keyCode: 222, borderColor: KeyboardColors.blue, shiftLabel: 'Э'),
         KeyData(label: 'Enter', keyCode: KeyCodes.enter, borderColor: KeyboardColors.pink, flex: 2),
       ],
       [
         KeyData(label: 'Shift', keyCode: KeyCodes.shift, borderColor: KeyboardColors.green, flex: 2, isModifier: true),
-        KeyData(label: 'Я', keyCode: 90, borderColor: KeyboardColors.pink, shiftLabel: 'я'),
-        KeyData(label: 'Ч', keyCode: 88, borderColor: KeyboardColors.pink, shiftLabel: 'ч'),
-        KeyData(label: 'С', keyCode: 67, borderColor: KeyboardColors.pink, shiftLabel: 'с'),
-        KeyData(label: 'М', keyCode: 86, borderColor: KeyboardColors.pink, shiftLabel: 'м'),
-        KeyData(label: 'И', keyCode: 66, borderColor: KeyboardColors.pink, shiftLabel: 'и'),
-        KeyData(label: 'Т', keyCode: 78, borderColor: KeyboardColors.pink, shiftLabel: 'т'),
-        KeyData(label: 'Ь', keyCode: 77, borderColor: KeyboardColors.pink, shiftLabel: 'ь'),
-        KeyData(label: 'Б', keyCode: 188, borderColor: KeyboardColors.pink, shiftLabel: 'б'),
-        KeyData(label: 'Ю', keyCode: 190, borderColor: KeyboardColors.pink, shiftLabel: 'ю'),
+        KeyData(label: 'я', keyCode: 90, borderColor: KeyboardColors.pink, shiftLabel: 'Я'), // было 'Я', shiftLabel: 'я'
+        KeyData(label: 'ч', keyCode: 88, borderColor: KeyboardColors.pink, shiftLabel: 'Ч'), // было 'Ч', shiftLabel: 'ч'
+        KeyData(label: 'с', keyCode: 67, borderColor: KeyboardColors.pink, shiftLabel: 'С'), // было 'С', shiftLabel: 'с'
+        KeyData(label: 'м', keyCode: 86, borderColor: KeyboardColors.pink, shiftLabel: 'М'), // было 'М', shiftLabel: 'м'
+        KeyData(label: 'и', keyCode: 66, borderColor: KeyboardColors.pink, shiftLabel: 'И'), // было 'И', shiftLabel: 'и'
+        KeyData(label: 'т', keyCode: 78, borderColor: KeyboardColors.pink, shiftLabel: 'Т'), // было 'Т', shiftLabel: 'т'
+        KeyData(label: 'ь', keyCode: 77, borderColor: KeyboardColors.pink, shiftLabel: 'Ь'), // было 'Ь', shiftLabel: 'ь'
+        KeyData(label: 'б', keyCode: 188, borderColor: KeyboardColors.pink, shiftLabel: 'Б'),
+        KeyData(label: 'ю', keyCode: 190, borderColor: KeyboardColors.pink, shiftLabel: 'Ю'),
         KeyData(label: '.', keyCode: 191, borderColor: KeyboardColors.pink, shiftLabel: ','),
         KeyData(label: 'Shift', keyCode: KeyCodes.shift, borderColor: KeyboardColors.green, flex: 2, isModifier: true),
       ],
