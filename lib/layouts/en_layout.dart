@@ -42,16 +42,15 @@ final enLayout = <List<KeyData>>[
   ],
   [
     KeyData(label: 'Caps', keyCode: KeyCodes.capsLock, borderColor: KeyboardColors.pink, flex: 2, isModifier: true),
-    KeyData(label: 'q', keyCode: 81, borderColor: KeyboardColors.green, shiftLabel: 'Q'), // было 'Q', shiftLabel: 'q'
-    KeyData(label: 'w', keyCode: 87, borderColor: KeyboardColors.green, shiftLabel: 'W'), // было 'W', shiftLabel: 'w'
-    KeyData(label: 'e', keyCode: 69, borderColor: KeyboardColors.green, shiftLabel: 'E'), // было 'E', shiftLabel: 'e'
-    KeyData(label: 'r', keyCode: 82, borderColor: KeyboardColors.green, shiftLabel: 'R'), // было 'R', shiftLabel: 'r'
-    KeyData(label: 't', keyCode: 84, borderColor: KeyboardColors.green, shiftLabel: 'T'), // было 'T', shiftLabel: 't'
-    KeyData(label: 'y', keyCode: 89, borderColor: KeyboardColors.green, shiftLabel: 'Y'), // было 'Y', shiftLabel: 'y'
-    KeyData(label: 'u', keyCode: 85, borderColor: KeyboardColors.green, shiftLabel: 'U'), // было 'U', shiftLabel: 'u'
-    KeyData(label: 'i', keyCode: 73, borderColor: KeyboardColors.green, shiftLabel: 'I'), // было 'I', shiftLabel: 'i'
-    KeyData(label: 'o', keyCode: 79, borderColor: KeyboardColors.green, shiftLabel: 'O'), // было 'O', shiftLabel: 'o'
-    KeyData(label: 'p', keyCode: 80, borderColor: KeyboardColors.green, shiftLabel: 'P'), // было 'P', shiftLabel: 'p'
+    KeyData(label: 'a', keyCode: 65, borderColor: KeyboardColors.green, shiftLabel: 'A'),
+    KeyData(label: 's', keyCode: 83, borderColor: KeyboardColors.green, shiftLabel: 'S'),
+    KeyData(label: 'd', keyCode: 68, borderColor: KeyboardColors.green, shiftLabel: 'D'),
+    KeyData(label: 'f', keyCode: 70, borderColor: KeyboardColors.green, shiftLabel: 'F'),
+    KeyData(label: 'g', keyCode: 71, borderColor: KeyboardColors.green, shiftLabel: 'G'),
+    KeyData(label: 'h', keyCode: 72, borderColor: KeyboardColors.green, shiftLabel: 'H'),
+    KeyData(label: 'j', keyCode: 74, borderColor: KeyboardColors.green, shiftLabel: 'J'),
+    KeyData(label: 'k', keyCode: 75, borderColor: KeyboardColors.green, shiftLabel: 'K'),
+    KeyData(label: 'l', keyCode: 76, borderColor: KeyboardColors.green, shiftLabel: 'L'),
     KeyData(label: ';', keyCode: 186, borderColor: KeyboardColors.blue, shiftLabel: ':'),
     KeyData(label: '\'', keyCode: 222, borderColor: KeyboardColors.blue, shiftLabel: '"'),
     KeyData(label: 'Enter', keyCode: KeyCodes.enter, borderColor: KeyboardColors.pink, flex: 2),
