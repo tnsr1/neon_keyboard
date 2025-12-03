@@ -451,9 +451,9 @@ class _KeyButtonState extends State<KeyButton> {
     if (_isLetter(label)) {
       // Если символ == своему верхнему регистру и != нижнему — это заглавная буква
       if (label == label.toUpperCase() && label != label.toLowerCase()) {
-        return 16;
+        return 13;
       } else {
-        return 12;
+        return 15;
       }
     }
 
