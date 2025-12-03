@@ -248,7 +248,7 @@ class _NeonKeyboardState extends State<NeonKeyboard> {
           ),
           // Контрол для регулировки отступов
           Positioned(
-            right: 10 + edgePadding,
+            right: 20 + edgePadding,
             bottom: 10 + edgePadding,
             child: GestureDetector(
               onPanUpdate: (details) {
@@ -451,13 +451,13 @@ class _KeyButtonState extends State<KeyButton> {
     if (_isLetter(label)) {
       // Если символ == своему верхнему регистру и != нижнему — это заглавная буква
       if (label == label.toUpperCase() && label != label.toLowerCase()) {
-        return 13;
-      } else {
         return 15;
+      } else {
+        return 17;
       }
     }
 
-    return 14;
+    return 16;
   }
 
   @override
